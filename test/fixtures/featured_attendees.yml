@@ -1,25 +1,27 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-  country: MyString
-  title: MyString
-  company: MyString
-  importance: 1
-  bio: MyString
-  interests: MyString
-  thumbnail_url: MyString
-  image_url: MyString
+<% 5.times do |n| %>
+featured_attendee_<%= n %>:
+  first_name: <%= Faker::Name.first_name %>
+  last_name: <%= Faker::Name.last_name %>
+  country: <%= Faker::Address.country %>
+  title: <%= Faker::Name.title %>
+  company: <%= Faker::Company.name %>
+  importance: <%= Random.rand(99_999_999) %>
+  bio: <%= Faker::Company.catch_phrase %>
+  interests: <%= Faker::Company.buzzword %>
+  thumbnail_url: <%= Faker::Avatar.image('me', '50x50') %>
+  image_url: <%= Faker::Avatar.image %>
+<% end %>
 
-two:
-  first_name: MyString
-  last_name: MyString
-  country: MyString
-  title: MyString
-  company: MyString
+musk:
+  first_name: Elon
+  last_name: Musk
+  country: United States of America
+  title: CEO
+  company: Tesla
   importance: 1
-  bio: MyString
-  interests: MyString
-  thumbnail_url: MyString
-  image_url: MyString
+  bio: X.com Paypal SpaceX
+  interests: Disruption
+  thumbnail_url: https://s3-eu-west-1.amazonaws.com/summitid/people/14093/medium/john_cc.png
+  image_url: https://s3-eu-west-1.amazonaws.com/summitid/people/14093/large/john_cc.png
