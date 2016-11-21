@@ -1,0 +1,2 @@
+class FeaturedAttendee < ApplicationRecord
+end
