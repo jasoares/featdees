@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use ActiveModel Serializers for specifying api response serialization
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'will_paginate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

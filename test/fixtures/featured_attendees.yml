@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-<% 5.times do |n| %>
+<% 30.times do |n| %>
 featured_attendee_<%= n %>:
   first_name: <%= Faker::Name.first_name %>
   last_name: <%= Faker::Name.last_name %>

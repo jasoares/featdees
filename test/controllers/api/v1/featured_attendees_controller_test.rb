@@ -4,15 +4,19 @@ class Api::V1::FeaturedAttendeesControllerTest < ActionDispatch::IntegrationTest
   setup { host! 'api.example.com' }
 
   test 'should get a valid list of featured attendees' do
-    get api_v1_featured_attendees_url
+    get api_v1_featured_attendees_url, params: { page: { number: 2 } }
     assert_response :success
     assert_equal response.content_type, 'application/vnd.websummit.v1+json'
-    data = JSON.parse(response.body)['data']
+    resp = JSON.parse(response.body)
+    data, links = resp['data'], resp['links']
     assert_equal 6, data.size
     assert_equal 'featured-attendees', data[0]['type']
     assert_nil data[0]['attributes']['bio']
     assert_nil data[0]['attributes']['image-url']
     assert_not_nil data[0]['attributes']['thumbnail-url']
+
+    assert_equal links['first'], links['prev']
+    assert_equal links['last'], links['next']
   end
 
   test 'should get a valid featured attendee' do
