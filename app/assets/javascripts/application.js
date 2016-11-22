@@ -12,5 +12,42 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require bootstrap
+//= require angular
+//= require angular-resource
 //= require_tree .
+
+var app = angular.module('mainApp', ['ngResource']);
+
+app.controller('FeaturedAttendeesController', ['$scope', '$http', '$resource', function($scope, $http, $resource){
+    $scope.attendees = [];
+    $scope.total_count = 0;
+    $scope.attendee = null;
+    $scope.next_page = 'http://api.' + location.host + '/featured_attendees/';
+
+    var FeaturedAttendee = $resource($scope.next_page + ':id', { id: '@id' }, {
+        get: { method: 'GET', params: { id: '@id' } }
+    });
+
+    $scope.fetchList = function(params) {
+        $http({
+            url: $scope.next_page,
+            paramSerializer: '$httpParamSerializerJQLike',
+            params: params
+        }).then(function(response) {
+            var resp = response['data'];
+            $scope.total_count = resp['meta']['total-count'];
+            $scope.next_page = resp['links']['next'];
+            $scope.attendees = $scope.attendees.concat(resp['data']);
+        });
+    };
+
+    $scope.fetch = function(id) {
+        FeaturedAttendee.get({ id: id }).$promise.then(function(response) {
+            $scope.attendee = response['data']['attributes'];
+            $('#attendee-modal').modal('show');
+        });
+    };
+
+    $scope.fetchList({ page: { number: 1, size: 100 } });
+}]);

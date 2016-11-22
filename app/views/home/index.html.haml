@@ -1,3 +1,57 @@
-%h1 Web Summit 2017
-%h2 Featured Attendees
+%header
+  .container
+    .row
+      .col-lg-12.text-xs-center
+        %h1 Web Summit 2017
+%section
+  .container
+    .row
+      .col-lg-12.text-xs-center
+        %h2
+          Meet
+          %span
+            {{ total_count }}
+          attendees with tickets
+    .row
+      .col-md-12
+        %ul{ 'ng-repeat' => 'attendee in attendees', id: 'attendee{{ attendee.id }}' }
+          = link_to '', 'ng-click' => 'fetch(attendee.id)' do
+            %li.attendee.col-md-2.col-sm-4.col-xs-6{ 'ng-class' => '{ "offset-md-1": $index % 5 == 0 }' }
+              %figure
+                %img.figure-img.img-fluid.rounded{ alt: "{{ attendee.attributes['first-name'] }} {{ attendee.attributes['last-name'] }}", width: '100%', 'ng-src' => "{{ attendee.attributes['thumbnail-url'] }}" }
+              .text-xs-center
+                %h4
+                  {{ attendee.attributes['first-name'] }} {{ attendee.attributes['last-name'] }}
+                %p.small
+                  {{ attendee.attributes['title'] | limitTo: 20 }}
+                %p.small.text-muted
+                  {{ attendee.attributes['company'] }}
+                %p.strong
+                  {{ attendee.attributes['country'] }}
+                %p
+                  {{ attendee.attributes['interests'] | limitTo: 20 }}
 
+%footer#load-more
+  .container
+    .row
+      .col-md-12.text-xs-center
+        = link_to 'Load more', '', class: 'btn btn btn-outline-secondary', 'ng-click' => 'fetchList()'
+
+.modal.fade#attendee-modal{ role: 'dialog', 'aria-labelledby' => '#myModalLabel', 'aria-hidden' => true, 'tabindex' => -1 }
+  .modal-dialog.modal-sm{ role: 'document' }
+    .modal-content
+      .modal-body
+        %img.img-fluid{ width: '100%', 'ng-src' => "{{ attendee['image-url'] }}" }
+        .text-xs-center
+          %h4
+            {{ attendee['first-name'] }} {{ attendee['last-name'] }}
+          %p
+            {{ attendee['title'] }}
+          %p.small.text-muted
+            {{ attendee['company'] }}
+          %p.strong
+            {{ attendee['country'] }}
+          %p
+            {{ attendee['interests'] }}
+          %p.strong
+            {{ attendee['bio'] }}
