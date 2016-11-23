@@ -72,6 +72,9 @@ section ul { list-style: none; margin-bottom: 0; }
     font-size: 0.8em;
     line-height: 1em;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 

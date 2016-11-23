@@ -23,13 +23,13 @@
                 %h4
                   {{ attendee.attributes['first-name'] }} {{ attendee.attributes['last-name'] }}
                 %p.small
-                  {{ attendee.attributes['title'] | limitTo: 20 }}
+                  {{ attendee.attributes['title'] }}
                 %p.small.text-muted
                   {{ attendee.attributes['company'] }}
                 %p.strong
                   {{ attendee.attributes['country'] }}
                 %p
-                  {{ attendee.attributes['interests'] | limitTo: 20 }}
+                  {{ attendee.attributes['interests'] }}
 
 %footer#load-more
   .container
