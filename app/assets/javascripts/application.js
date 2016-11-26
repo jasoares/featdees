@@ -24,7 +24,8 @@ app.controller('FeaturedAttendeesController', ['$scope', '$http', '$resource', f
     $scope.attendees = [];
     $scope.total_count = 0;
     $scope.attendee = null;
-    $scope.next_page = 'http://' + location.host + '/featured_attendees/';
+    var api_host = location.host === 'localhost:3000' ? 'api.lvh.me:3000' : 'api.' + location.host;
+    $scope.next_page = 'http://' + api_host + '/featured_attendees/';
 
     var FeaturedAttendee = $resource($scope.next_page + ':id', { id: '@id' }, {
         get: { method: 'GET', params: { id: '@id' } }
