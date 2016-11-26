@@ -38,6 +38,7 @@ gem 'will_paginate'
 
 gem "haml-rails", "~> 0.9"
 gem 'bootstrap', '~> 4.0.0.alpha4'
+gem 'rails-assets-tether', '>= 1.1.0'
 gem 'angularjs-rails'
 
 group :development, :test do
