@@ -47,7 +47,7 @@ Follows main specifications of [json:api](http://jsonapi.org/)
 
   **Example:**
 
-  `http://api.lvh.me:3000/featured-attendees?page[number]=1&page[size]2`
+  `http://api.lvh.me:3000/featured_attendees?page[number]=1&page[size]2`
 
   ```json
   {
@@ -100,7 +100,7 @@ Follows main specifications of [json:api](http://jsonapi.org/)
 
   **Example:**
 
-  `http://api.lvh.me:3000/featured-attendees/1`
+  `http://api.lvh.me:3000/featured_attendees/1`
 
   ```json
   {
